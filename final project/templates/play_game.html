@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Game</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Guess the Number!</h1>
+    <p>You have {{ attempts_remaining }} attempts remaining.</p>
+    <form action="{{ url_for('play_game') }}" method="post">
+        <input type="number" name="guessed_number" required>
+        <button type="submit" name="guess">Guess</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <a href="{{ url_for('start_game') }}">Start a New Game</a>
+</body>
+</html>

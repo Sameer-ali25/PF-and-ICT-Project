@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Game</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Choose Difficulty Level</h1>
+    <form action="{{ url_for('play_game') }}" method="post">
+        <label>
+            <input type="radio" name="level" value="easy" required> Easy (10 attempts)
+        </label><br>
+        <label>
+            <input type="radio" name="level" value="hard"> Hard (5 attempts)
+        </label><br>
+        <button type="submit">Start Game</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
